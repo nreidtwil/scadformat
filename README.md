@@ -49,6 +49,34 @@ If you are ok with the result, you can delete all backup files (.scadbak)
 find $directory -type f -name "*.scadbak" -exec rm "{}" \;
 ```
 
+## Editor Integration
+
+### Zed
+
+[Zed](https://zed.dev) supports running an external command as a formatter on a per-language basis. Since SCADFormat reads source code from stdin and writes the formatted result to stdout (see [Read from stdin / write to stdout](#read-from-stdin--write-to-stdout) above), it can be wired in directly without any wrapper script.
+
+Add the following to your Zed `settings.json` (via the `zed: open settings` command, either the user settings at `~/.config/zed/settings.json` or a project-local `.zed/settings.json`):
+
+```json
+{
+  "languages": {
+    "OpenSCAD": {
+      "formatter": {
+        "external": {
+          "command": "scadformat",
+          "arguments": []
+        }
+      },
+      "format_on_save": "on"
+    }
+  }
+}
+```
+
+Notes:
+- Zed does not ship a built-in OpenSCAD language, so `.scad` files won't have syntax highlighting unless you install a separate Zed extension that registers the OpenSCAD language/grammar. The formatter configuration above still applies to whichever language name you associate with `.scad` files (adjust the `"OpenSCAD"` key to match).
+- Make sure `scadformat` is on the `PATH` that Zed uses. On macOS, GUI-launched apps don't always inherit your shell's `PATH` - installing via [Homebrew](#homebrew-macos--linux) avoids this problem since it installs into a standard location (`/opt/homebrew/bin` or `/usr/local/bin`).
+
 ## Building
 
 ### Install Prerequisites
