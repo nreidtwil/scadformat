@@ -12,6 +12,25 @@ https://github.com/hugheaves/scadformat/releases
 
 Download the zip file for your operating system (windows.zip, linux,zip, macos.zip) and extract the contents.
 
+## Editor Integration
+
+### Helix
+
+[Helix](https://helix-editor.com) supports configuring an external formatter command per language via `languages.toml`. Like Zed, Helix pipes the buffer contents to the command's stdin and expects the formatted result on stdout, which matches SCADFormat's stdin/stdout mode (see [Read from stdin / write to stdout](#read-from-stdin--write-to-stdout) below) directly - no wrapper script needed.
+
+Add the following to your `languages.toml` (either the global `~/.config/helix/languages.toml` or a project-local `.helix/languages.toml`):
+
+```toml
+[[language]]
+name = "openscad"
+formatter = { command = "scadformat" }
+auto-format = true
+```
+
+Notes:
+- Helix has no built-in OpenSCAD language configuration, so you'll also need a `[[language]]` entry that maps the `.scad` file extension (via `file-types = ["scad"]`) to this language name for it to be recognized at all; syntax highlighting additionally requires a tree-sitter grammar, which is a separate concern from formatting.
+- Make sure `scadformat` is on the `PATH` that Helix uses when it launches.
+
 ## Usage
 
 SCADFormat is a command line tool.
