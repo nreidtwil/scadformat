@@ -12,7 +12,6 @@ https://github.com/hugheaves/scadformat/releases
 
 Download the zip file for your operating system (windows.zip, linux,zip, macos.zip) and extract the contents.
 
-=======
 ### Homebrew (macOS / Linux)
 
 SCADFormat can also be installed via [Homebrew](https://brew.sh), using this repository as a tap, which builds the tool from source:
