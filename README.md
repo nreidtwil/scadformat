@@ -12,6 +12,21 @@ https://github.com/hugheaves/scadformat/releases
 
 Download the zip file for your operating system (windows.zip, linux,zip, macos.zip) and extract the contents.
 
+### Homebrew (macOS / Linux)
+
+SCADFormat can also be installed via [Homebrew](https://brew.sh), using this repository as a tap, which builds the tool from source:
+
+```bash
+brew tap hugheaves/scadformat https://github.com/hugheaves/scadformat.git
+brew install hugheaves/scadformat/scadformat
+```
+
+This requires Homebrew's Go and ANTLR formulae (installed automatically as build dependencies) and will build the latest tagged release. To install the current development version instead, run:
+
+```bash
+brew install --HEAD hugheaves/scadformat/scadformat
+```
+
 ## Usage
 
 SCADFormat is a command line tool.
