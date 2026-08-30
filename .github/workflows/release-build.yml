@@ -49,6 +49,12 @@ jobs:
     - name: Install ANTLR
       run: pip install antlr4-tools
     - name: Build and Test
+      env:
+        # Pin the ANTLR version so antlr4-tools doesn't need to query
+        # Maven Central for the "latest" version at build time. That
+        # lookup uses the deprecated Sonatype Nexus2 search API, which
+        # can return errors and break CI on a cold cache.
+        ANTLR4_TOOLS_ANTLR_VERSION: "4.13.2"
       run: make
     - name: Zip Artifact
       run: powershell Compress-Archive scadformat.exe windows.zip
@@ -79,6 +85,12 @@ jobs:
     - name: Install ANTLR
       run: pip install antlr4-tools
     - name: Build and Test
+      env:
+        # Pin the ANTLR version so antlr4-tools doesn't need to query
+        # Maven Central for the "latest" version at build time. That
+        # lookup uses the deprecated Sonatype Nexus2 search API, which
+        # can return errors and break CI on a cold cache.
+        ANTLR4_TOOLS_ANTLR_VERSION: "4.13.2"
       run: make
     - name: Zip Artifact
       run: zip macos.zip scadformat
@@ -109,6 +121,12 @@ jobs:
     - name: Install ANTLR
       run: pip install antlr4-tools
     - name: Build and Test
+      env:
+        # Pin the ANTLR version so antlr4-tools doesn't need to query
+        # Maven Central for the "latest" version at build time. That
+        # lookup uses the deprecated Sonatype Nexus2 search API, which
+        # can return errors and break CI on a cold cache.
+        ANTLR4_TOOLS_ANTLR_VERSION: "4.13.2"
       run: make
     - name: Zip Artifact
       run: zip linux.zip scadformat
